@@ -17,6 +17,6 @@ export class HealthcheckController implements HealthcheckControllerInterface {
   }
 
   private sendOk = (_: unknown, res: Response) => {
-    res.sendStatus(StatusCodes.OK);
+    res.contentType('text/plain').sendStatus(StatusCodes.OK);
   };
 }
