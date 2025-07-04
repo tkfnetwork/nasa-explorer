@@ -11,5 +11,6 @@ export const envValidation = z.object({
     .enum(['info', 'debug', 'warn', 'error'])
     .optional()
     .default('info'),
+  NASA_API_BASE_URL: z.string().url(),
   NASA_API_KEY: z.string().min(5),
 });
