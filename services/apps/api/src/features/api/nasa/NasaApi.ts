@@ -4,6 +4,7 @@ import { injectable } from 'inversify';
 
 import { NASA_API_BASE_URL, NASA_API_KEY } from '../../../config';
 import type { ApodParams, ApodResponse } from './types';
+import { formatDate } from './utils';
 
 export interface NasaApiInterface {
   apod: (params?: ApodParams) => Promise<AxiosResponse<ApodResponse>>;
@@ -19,5 +20,12 @@ export class NasaApi implements NasaApiInterface {
   });
 
   public apod = (params?: ApodParams) =>
-    this.client.get<ApodResponse>('/planetary/apod', { params });
+    this.client.get<ApodResponse>('/planetary/apod', {
+      params: {
+        ...params,
+        date: formatDate(params?.date),
+        start_date: formatDate(params?.start_date),
+        end_date: formatDate(params?.end_date),
+      },
+    });
 }

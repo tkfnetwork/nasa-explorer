@@ -5,11 +5,10 @@ import { start } from '../../app';
 
 describe('GET /healthcheck', () => {
   it('returns correct response', async () => {
-    await request(await start())
+    const res = await request(await start())
       .get('/healthcheck')
-      .expect(StatusCodes.OK)
-      .then((res) => {
-        expect(res.text).toEqual('OK');
-      });
+      .expect(StatusCodes.OK);
+
+    expect(res.text).toEqual('OK');
   });
 });

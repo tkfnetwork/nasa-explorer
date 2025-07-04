@@ -1,3 +1,5 @@
+import './cron';
+
 import { start } from './app';
 import { logger } from './utils';
 

@@ -1,4 +1,4 @@
-import type { Response } from 'express';
+import type { NextFunction, Response } from 'express';
 import { Router } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { injectable } from 'inversify';
@@ -16,7 +16,11 @@ export class HealthcheckController implements HealthcheckControllerInterface {
     this.router.get('/', this.sendOk);
   }
 
-  private sendOk = (_: unknown, res: Response) => {
-    res.contentType('text/plain').sendStatus(StatusCodes.OK);
+  private sendOk = (_: unknown, res: Response, next: NextFunction) => {
+    try {
+      res.contentType('text/plain').sendStatus(StatusCodes.OK);
+    } catch (e) {
+      next(e);
+    }
   };
 }
