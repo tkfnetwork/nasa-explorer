@@ -1,0 +1,27 @@
+{
+  "name": "nasa-explorer",
+  "version": "1.0.0",
+  "description": "Monorepo holding the NASA Eplorer API and client",
+  "scripts": {
+    "test": "pnpm recursive run test",
+    "test:ci": "pnpm recursive run test --coverage --ci",
+    "lint": "pnpm recursive run lint",
+    "lint:styles": "pnpm recursive run lint:styles",
+    "prepare": "husky",
+    "prettier": "pnpm recursive run prettier"
+  },
+  "keywords": [],
+  "author": "Kris Pomphrey <kris@tkf.network>",
+  "license": "ISC",
+  "packageManager": "pnpm@10.6.5",
+  "engines": {
+    "node": ">=22.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
+    "husky": "^9.1.7",
+    "knip": "^5.41.1",
+    "lint-staged": "^15.2.11"
+  }
+}
