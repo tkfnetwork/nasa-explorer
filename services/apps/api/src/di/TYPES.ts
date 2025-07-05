@@ -6,6 +6,10 @@ export const TYPES = {
   PicturesService: Symbol.for('PicturesService'),
   PicturesController: Symbol.for('PicturesController'),
 
+  // Asteroids
+  AsteroidsService: Symbol.for('AsteroidsService'),
+  AsteroidsController: Symbol.for('AsteroidsController'),
+
   // Healthcheck
   HealthcheckController: Symbol.for('HealthcheckController'),
 

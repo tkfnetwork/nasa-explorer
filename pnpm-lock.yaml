@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@types/express': ^5.0.3
+  express: ^5.1.0
+  zod: ^3.25.73
+
 importers:
 
   .:
@@ -75,6 +80,9 @@ importers:
       '@faker-js/faker':
         specifier: ^9.9.0
         version: 9.9.0
+      '@ne/request-validation':
+        specifier: workspace:*
+        version: link:../../packages/request-validation
       '@types/apicache':
         specifier: ^1.6.7
         version: 1.6.7
@@ -138,6 +146,22 @@ importers:
       typescript-eslint:
         specifier: ^8.35.1
         version: 8.35.1(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)
+
+  services/packages/request-validation:
+    dependencies:
+      http-status-codes:
+        specifier: ^2.3.0
+        version: 2.3.0
+    devDependencies:
+      '@types/express':
+        specifier: ^5.0.3
+        version: 5.0.3
+      express:
+        specifier: ^5.1.0
+        version: 5.1.0
+      zod:
+        specifier: ^3.25.73
+        version: 3.25.73
 
 packages:
 
@@ -3621,7 +3645,7 @@ packages:
     resolution: {integrity: sha512-mdi7YOLtram5dzJ5aDtm1AG9+mxRma1iaMrZdYIpFO7epdKBUwLHIxTF8CPDeCQ828zAXYtizrKlEJAtzgfgrw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
-      zod: ^3.25.0
+      zod: ^3.25.73
 
   zod@3.25.73:
     resolution: {integrity: sha512-fuIKbQAWQl22Ba5d1quwEETQYjqnpKVyZIWAhbnnHgnDd3a+z4YgEfkI5SZ2xMELnLAXo/Flk2uXgysZNf0uaA==}

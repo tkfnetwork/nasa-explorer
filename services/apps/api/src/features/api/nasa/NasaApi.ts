@@ -3,11 +3,17 @@ import axios from 'axios';
 import { injectable } from 'inversify';
 
 import { NASA_API_BASE_URL, NASA_API_KEY } from '../../../config';
-import type { ApodParams, ApodResponse } from './types';
+import type {
+  ApodParams,
+  ApodResponse,
+  NeoFeedResponse,
+  NeoParams,
+} from './types';
 import { formatDate } from './utils';
 
 export interface NasaApiInterface {
   apod: (params?: ApodParams) => Promise<AxiosResponse<ApodResponse>>;
+  neoFeed: (params?: NeoParams) => Promise<AxiosResponse<NeoFeedResponse>>;
 }
 
 @injectable()
@@ -28,4 +34,7 @@ export class NasaApi implements NasaApiInterface {
         end_date: formatDate(params?.end_date),
       },
     });
+
+  public neoFeed = (params?: NeoParams) =>
+    this.client.get<NeoFeedResponse>('/neo/rest/v1/feed', { params });
 }

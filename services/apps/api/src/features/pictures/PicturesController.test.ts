@@ -41,7 +41,7 @@ afterAll(() => server.close());
 describe('GET /pictures/today', () => {
   it('returns correct response', async () => {
     server.use(
-      http.get(`http://stub/planetary/apod`, () =>
+      http.get('http://stub/planetary/apod', () =>
         HttpResponse.json(imageResponseMock)
       )
     );

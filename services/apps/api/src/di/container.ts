@@ -4,12 +4,16 @@ import type { MiddlewareHandlerInterface } from '../middlewares';
 import { MiddlewareHandler } from '../middlewares';
 import { TYPES } from './TYPES';
 import type {
+  AsteroidsControllerInterface,
+  AsteroidsServiceInterface,
   HealthcheckControllerInterface,
   NasaApiInterface,
   PicturesControllerInterface,
   PicturesServiceInterface,
 } from '../features';
 import {
+  AsteroidsController,
+  AsteroidsService,
   HealthcheckController,
   NasaApi,
   PicturesController,
@@ -25,10 +29,17 @@ container.bind<NasaApiInterface>(TYPES.NasaApi).to(NasaApi);
 container
   .bind<PicturesServiceInterface>(TYPES.PicturesService)
   .to(PicturesService);
-
 container
   .bind<PicturesControllerInterface>(TYPES.PicturesController)
   .to(PicturesController);
+
+// Asteroids
+container
+  .bind<AsteroidsServiceInterface>(TYPES.AsteroidsService)
+  .to(AsteroidsService);
+container
+  .bind<AsteroidsControllerInterface>(TYPES.AsteroidsController)
+  .to(AsteroidsController);
 
 // Healthcheck
 container
