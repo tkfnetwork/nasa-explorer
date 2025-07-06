@@ -40,7 +40,12 @@ export const validate =
 
     if (results.every(([, result]) => result.success) || failThrough) {
       results.forEach(([context, result]) => {
-        req[context as ValidationContext] = result.data;
+        // Express is sometimes read only at this point, so ensure that
+        // the parsed values replace the raw ones
+        Object.defineProperty(req, context, {
+          value: result.data,
+          writable: false,
+        });
       });
 
       return next();

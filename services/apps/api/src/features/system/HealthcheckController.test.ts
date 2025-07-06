@@ -5,7 +5,7 @@ import { start } from '../../app';
 
 describe('GET /healthcheck', () => {
   it('returns correct response', async () => {
-    const res = await request(await start())
+    const res = await request(await start(false))
       .get('/healthcheck')
       .expect(StatusCodes.OK);
 

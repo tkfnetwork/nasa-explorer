@@ -15,3 +15,5 @@ export const getAllQueryValidation = z
       });
     }
   });
+
+export const wsPositionsValidation = z.array(z.string());

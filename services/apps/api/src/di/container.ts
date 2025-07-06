@@ -19,8 +19,20 @@ import {
   PicturesController,
   PicturesService,
 } from '../features';
+import type { WebsocketRouterInterface } from '../ws';
+import { WebsocketRouter } from '../ws';
 
 export const container = new Container();
+
+// System
+container
+  .bind<WebsocketRouterInterface>(TYPES.WebsocketRouter)
+  .to(WebsocketRouter)
+  .inSingletonScope();
+container
+  .bind<MiddlewareHandlerInterface>(TYPES.MiddlewareHandler)
+  .to(MiddlewareHandler)
+  .inSingletonScope();
 
 // APIs
 container.bind<NasaApiInterface>(TYPES.NasaApi).to(NasaApi);
@@ -45,8 +57,3 @@ container
 container
   .bind<HealthcheckControllerInterface>(TYPES.HealthcheckController)
   .to(HealthcheckController);
-
-// System
-container
-  .bind<MiddlewareHandlerInterface>(TYPES.MiddlewareHandler)
-  .to(MiddlewareHandler);

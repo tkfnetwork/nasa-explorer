@@ -1,10 +1,12 @@
 import nodeCron from 'node-cron';
 
 import { apiCacheInstance, logger } from './utils';
-import { PicturesCacheKeys } from './features/pictures/constants';
+import { AsteroidsCacheKeys, PicturesCacheKeys } from './features';
 
 nodeCron.schedule('0 0 * * *', () => {
   logger.info('Clearing cache...');
 
-  apiCacheInstance.clear(PicturesCacheKeys.Today);
+  [PicturesCacheKeys.Today, AsteroidsCacheKeys.Feed].forEach((key) => {
+    apiCacheInstance.clear(key);
+  });
 });

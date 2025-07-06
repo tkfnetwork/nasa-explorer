@@ -7,6 +7,7 @@ import type {
   ApodParams,
   ApodResponse,
   NeoFeedResponse,
+  NeoItem,
   NeoParams,
 } from './types';
 import { formatDate } from './utils';
@@ -14,6 +15,7 @@ import { formatDate } from './utils';
 export interface NasaApiInterface {
   apod: (params?: ApodParams) => Promise<AxiosResponse<ApodResponse>>;
   neoFeed: (params?: NeoParams) => Promise<AxiosResponse<NeoFeedResponse>>;
+  neoById: (id: string) => Promise<AxiosResponse<NeoItem>>;
 }
 
 @injectable()
@@ -37,4 +39,7 @@ export class NasaApi implements NasaApiInterface {
 
   public neoFeed = (params?: NeoParams) =>
     this.client.get<NeoFeedResponse>('/neo/rest/v1/feed', { params });
+
+  public neoById = (id: string) =>
+    this.client.get<NeoItem>(`/neo/rest/v1/neo/${id}`);
 }

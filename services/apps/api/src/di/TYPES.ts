@@ -1,4 +1,8 @@
 export const TYPES = {
+  // System
+  MiddlewareHandler: Symbol.for('MiddlewareHandler'),
+  WebsocketRouter: Symbol.for('WebsocketRouter'),
+
   // APIs
   NasaApi: Symbol.for('NasaApi'),
 
@@ -12,7 +16,4 @@ export const TYPES = {
 
   // Healthcheck
   HealthcheckController: Symbol.for('HealthcheckController'),
-
-  // System
-  MiddlewareHandler: Symbol.for('MiddlewareHandler'),
 } as const;
