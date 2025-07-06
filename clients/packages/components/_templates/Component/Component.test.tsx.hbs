@@ -1,0 +1,16 @@
+
+import { render } from '@testing-library/react';
+import { axe } from 'jest-axe';
+import { {{ pascalCase name }} } from './{{ pascalCase name }}';
+import { {{ pascalCase name }}Props } from './{{ pascalCase name }}.types';
+
+const renderElement = (props: {{ pascalCase name }}Props) => <{{ pascalCase name }} {...props} />;
+const renderComponent = (props: {{ pascalCase name }}Props) =>
+  render(renderElement(props));
+
+test('{{ pascalCase name }} is accessible', async () => {
+  const { container } = renderComponent({});
+  const results = await axe(container)
+  
+  expect(results).toHaveNoViolations()
+})
