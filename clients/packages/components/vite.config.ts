@@ -17,6 +17,7 @@ import { patchCssModules } from 'vite-css-modules';
 import dts from 'vite-plugin-dts';
 import { externalizeDeps } from 'vite-plugin-externalize-deps';
 import svgr from 'vite-plugin-svgr';
+import { coverageConfigDefaults } from 'vitest/config';
 
 const buildName = 'build';
 const distName = 'dist';
@@ -132,6 +133,23 @@ export default defineConfig(({ mode }) => ({
         inlineDynamicImports: false,
         interop: 'auto',
       },
+    },
+  },
+  test: {
+    environment: 'happy-dom',
+    setupFiles: ['vitest-setup.ts'],
+    coverage: {
+      provider: 'v8',
+      exclude: [
+        '**/_templates/**',
+        '**/build/**',
+        '**/dist/**',
+        '**/index.ts',
+        '**/*.types.ts',
+        '**/*.stories.tsx',
+        ...coverageConfigDefaults.exclude,
+      ],
+      include: ['**/src/**/*'],
     },
   },
 }));
