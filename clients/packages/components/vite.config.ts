@@ -103,6 +103,12 @@ export default defineConfig(({ mode }) => ({
       '@': srcPath,
     },
   },
+  css: {
+    postcss: {},
+    modules: {
+      generateScopedName: '[local]__[hash:base64:5]',
+    },
+  },
   build: {
     lib: {
       entry: path.resolve(srcPath, 'index.ts'),

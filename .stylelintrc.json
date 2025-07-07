@@ -1,5 +1,6 @@
 {
   "extends": ["stylelint-config-standard", "stylelint-prettier/recommended"],
+  "ignoreFiles": ["**/coverage/**", "**/dist/**", "**/build/**"],
   "rules": {
     "declaration-property-value-no-unknown": null,
     "function-no-unknown": [
