@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "vite",
+    "dev": "pnpm build --watch",
     "build": "tsc -b && vite build",
     "build:css": "pnpm dlx @tailwindcss/cli -i ./index.css -o ./build/tw.css",
     "add-shadcn": "pnpm dlx shadcn@latest add",
@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@ne/theme": "workspace:*",
+    "@radix-ui/react-navigation-menu": "^1.2.13",
     "@react-hookz/web": "^25.1.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

@@ -1,7 +1,6 @@
 import type { Preview } from '@storybook/react-vite';
 
-import '@ne/theme/index.css';
-import './index.css';
+import '../index.css';
 import { withThemeByClassName } from '@storybook/addon-themes';
 
 const preview: Preview = {
