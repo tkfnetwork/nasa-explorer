@@ -1,6 +1,6 @@
 {
   "name": "@ne/theme",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "",
   "main": "index.ts",
   "keywords": [],
@@ -8,7 +8,8 @@
   "license": "ISC",
   "packageManager": "pnpm@10.6.5",
   "scripts": {
-    "prettier": "prettier --write \"**/*.{ts,tsx,md,css,json}\""
+    "prettier": "prettier --write \"**/*.{ts,tsx,md,css,json}\"",
+    "lint:styles": "stylelint \"**/*.css\" --fix"
   },
   "devDependencies": {
     "prettier": "^3.6.2",

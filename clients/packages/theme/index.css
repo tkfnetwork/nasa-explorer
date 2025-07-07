@@ -1,3 +1,21 @@
 @import 'tailwindcss';
+@import './fonts.css';
 
-@custom-variant dark (&:is(.dark *));
+:root {
+  --typography-font: 'Geoform';
+}
+
+@layer base {
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--color);
+    font-size: var(--typography-size-md);
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+    font-family: var(--typography-font), system-ui, sans-serif;
+  }
+}
