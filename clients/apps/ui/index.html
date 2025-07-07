@@ -1,13 +1,22 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link href="/src/index.css" rel="stylesheet" />
+    <title>NASA Explorer</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root" class="flex w-full h-full">
+      <div class="flex w-full h-full items-center justify-center">
+        <img
+          class="max-w-48 opacity-75 text-sm text-slate-50"
+          src="/src/assets/images/logo.svg"
+          alt="NASA"
+        />
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
