@@ -3,9 +3,7 @@ import { Vector3 } from 'three';
 import type { GeocentricPosition, ParticlePosition } from '../types';
 import type { NearEarthObjectWithOrbital } from '@/api/generated';
 
-// Earth radius in whatever units globe.gl expects (usually radius=1)
-
-const EARTH_RADIUS = 6371;
+export const EARTH_RADIUS = 6371;
 
 function solveEccentricAnomaly(M: number, e: number, tol = 1e-6): number {
   let E = M;
@@ -82,26 +80,6 @@ export function orbitalToGeocentric(
   return { lat, lng, alt };
 }
 
-export function orbitalToCartesianVector3(
-  orbit: OrbitalData,
-  date = new Date()
-) {
-  const latLng = orbitalToGeocentric(orbit, date);
-  const { lat, lng: lon, alt } = latLng;
-
-  // Convert lat/lon/alt (alt in Earth radii) to Cartesian Vector3
-  const radius = EARTH_RADIUS + alt / 100; // altitude above Earth radius
-
-  const phi = (90 - lat) * (Math.PI / 180);
-  const theta = (lon + 180) * (Math.PI / 180);
-
-  const x = radius * Math.sin(phi) * Math.cos(theta);
-  const y = radius * Math.cos(phi);
-  const z = radius * Math.sin(phi) * Math.sin(theta);
-
-  return { position: new Vector3(x, y, z), ...latLng };
-}
-
 export function itemToParticle(
   neo: NearEarthObjectWithOrbital
 ): ParticlePosition {
@@ -120,19 +98,17 @@ export function itemToParticle(
     radius * Math.sin(phi) * Math.sin(theta)
   );
 
-  // Estimated size
   const diameterKm =
     neo.estimated_diameter?.kilometers?.estimated_diameter_max ?? 10;
 
-  console.log({ diameterKm });
-  const visualScale = 100; // tweak this
+  const visualScale = 100;
   const size = diameterKm * visualScale;
 
   return {
     ...position,
     lat,
     lng,
-    alt: alt / EARTH_RADIUS,
+    alt: alt / (EARTH_RADIUS / 2),
     color: 'grey',
     size,
   };
