@@ -36,11 +36,56 @@ export class AsteroidsController implements AsteroidsControllerInterface {
     this.ws.register(`${this.PATH}/positions`, this.wsPositions);
   }
 
+  /**
+   * @openapi
+   * /asteroids:
+   *   get:
+   *     operationId: getAsteroids
+   *     summary: Get asteroids by date
+   *     description: |
+   *       Return a feed of asteroids by start and end date.
+   *
+   *       **Max of 7 days of data can be returned from this endpoint**
+   *     parameters:
+   *      - $ref: '#/components/parameters/startDate'
+   *      - $ref: '#/components/parameters/endDate'
+   *     tags:
+   *       - Asteroids
+   *     responses:
+   *       200:
+   *         description: Date keyed asteroid results
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: object
+   *               properties:
+   *                 data:
+   *                   type: object
+   *                   additionalProperties:
+   *                     type: array
+   *                     items:
+   *                       $ref: '#/components/schemas/NearEarthObject'
+   *                 total:
+   *                   type: number
+   *       400:
+   *         description: Bad request
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/components/schemas/ValidationErrorResponse'
+   *       500:
+   *         description: Internal Server Error
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/components/schemas/ErrorResponse'
+   */
   private getAll = async (
     req: Request<unknown, GetAllResponse, unknown, GetAllQuery>,
     res: Response<GetAllResponse>,
     next: NextFunction
   ) => {
+    throw Error();
     try {
       const data = await this.asteroidsService.getAsteroidsByDateRange(
         req.query
@@ -52,6 +97,16 @@ export class AsteroidsController implements AsteroidsControllerInterface {
     }
   };
 
+  /**
+   * @openapi
+   * /asteroids/positions:
+   *   get:
+   *     operationId: wsAsteroidsPositions
+   *     summary: Websocket endpoint for retrieving asteroids positions
+   *     responses:
+   *       101:
+   *         description: Switching Protocols - WebSocket connection established.
+   */
   private wsPositions: WebsocketHandler = async (ws) => {
     ws.on('message', async (msg) => {
       const data = wsPositionsValidation.parse(JSON.parse(msg.toString()));

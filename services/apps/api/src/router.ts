@@ -8,9 +8,13 @@ import { logger } from './utils';
 export const router = Router({ mergeParams: true });
 
 [
-  TYPES.HealthcheckController,
+  // Order is important here
+
   TYPES.PicturesController,
   TYPES.AsteroidsController,
+
+  TYPES.HealthcheckController,
+  TYPES.DocsController,
 ].forEach((id) => {
   const controller = container.get<Controller>(id);
 

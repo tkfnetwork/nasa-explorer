@@ -4,11 +4,14 @@
   "description": "API layer for interacting with the NASA API",
   "main": "dist/index.js",
   "scripts": {
+    "prepare": "pnpm generate:swagger",
     "build": "rimraf dist && esbuild --bundle  --platform=node --format=esm ./src/index.ts --outfile=dist/server.js",
     "dev": "tsx --watch ./src/index.ts",
     "lint": "eslint --fix",
     "prettier": "prettier --write \"**/*.{ts,tsx,md,css,json}\"",
-    "test": "jest"
+    "test": "jest",
+    "generate:swagger": "swagger-jsdoc -d ./src/features/docs/definition.yaml -o ./src/features/docs/openapi-spec.json ./src/**/*Controller.ts",
+    "generate:postman": "pnpm generate:swagger && portman -l ./src/features/docs/openapi-spec.json -o ./postman/collection.json -b http://localhost:3008"
   },
   "keywords": [],
   "author": "Kris Pomphrey <kris@tkf.network>",
@@ -48,6 +51,7 @@
     "typescript-eslint": "^8.35.1"
   },
   "dependencies": {
+    "@scalar/express-api-reference": "^0.8.9",
     "apicache": "^1.6.3",
     "axios": "^1.10.0",
     "cors": "^2.8.5",
@@ -62,6 +66,7 @@
     "node-cache": "^5.1.2",
     "node-cron": "^4.2.0",
     "reflect-metadata": "^0.2.2",
+    "swagger-jsdoc": "^6.2.8",
     "winston": "^3.17.0",
     "ws": "^8.18.3",
     "zod": "^3.25.73"

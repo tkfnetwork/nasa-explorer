@@ -6,6 +6,7 @@ import { TYPES } from './TYPES';
 import type {
   AsteroidsControllerInterface,
   AsteroidsServiceInterface,
+  DocsControllerInterface,
   HealthcheckControllerInterface,
   NasaApiInterface,
   PicturesControllerInterface,
@@ -14,6 +15,7 @@ import type {
 import {
   AsteroidsController,
   AsteroidsService,
+  DocsController,
   HealthcheckController,
   NasaApi,
   PicturesController,
@@ -57,3 +59,8 @@ container
 container
   .bind<HealthcheckControllerInterface>(TYPES.HealthcheckController)
   .to(HealthcheckController);
+
+// Docs
+container
+  .bind<DocsControllerInterface>(TYPES.DocsController)
+  .to(DocsController);

@@ -16,4 +16,7 @@ export const TYPES = {
 
   // Healthcheck
   HealthcheckController: Symbol.for('HealthcheckController'),
+
+  // Docs
+  DocsController: Symbol.for('DocsController'),
 } as const;
