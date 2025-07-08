@@ -85,7 +85,6 @@ export class AsteroidsController implements AsteroidsControllerInterface {
     res: Response<GetAllResponse>,
     next: NextFunction
   ) => {
-    throw Error();
     try {
       const data = await this.asteroidsService.getAsteroidsByDateRange(
         req.query

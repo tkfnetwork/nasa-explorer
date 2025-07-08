@@ -4,14 +4,14 @@
   "description": "API layer for interacting with the NASA API",
   "main": "dist/index.js",
   "scripts": {
-    "prepare": "pnpm generate:swagger",
+    "prepare": "pnpm generate:openapi-spec",
     "build": "rimraf dist && esbuild --bundle  --platform=node --format=esm ./src/index.ts --outfile=dist/server.js",
     "dev": "tsx --watch ./src/index.ts",
     "lint": "eslint --fix",
     "prettier": "prettier --write \"**/*.{ts,tsx,md,css,json}\"",
     "test": "jest",
-    "generate:swagger": "swagger-jsdoc -d ./src/features/docs/definition.yaml -o ./src/features/docs/openapi-spec.json ./src/**/*Controller.ts",
-    "generate:postman": "pnpm generate:swagger && portman -l ./src/features/docs/openapi-spec.json -o ./postman/collection.json -b http://localhost:3008"
+    "generate:openapi-spec": "swagger-jsdoc -d ./src/features/docs/definition.yaml -o ./src/features/docs/openapi-spec.json ./src/**/*Controller.ts",
+    "generate:postman": "pnpm generate:openapi-spec && portman -l ./src/features/docs/openapi-spec.json -o ./postman/collection.json -b http://localhost:3008"
   },
   "keywords": [],
   "author": "Kris Pomphrey <kris@tkf.network>",
