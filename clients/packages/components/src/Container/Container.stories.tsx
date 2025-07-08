@@ -4,7 +4,7 @@ import { Container } from './Container';
 type Story = StoryObj<typeof Container>;
 
 export default {
-  title: 'Layout/Container',
+  title: 'Content/Container',
   component: Container,
 } as Meta<typeof Container>;
 

@@ -12,5 +12,5 @@ export const config: InitOptions = {
   debug: process.env.NODE_ENV === 'development',
   resources,
   defaultNS,
-  ns: ['common'],
+  ns: ['common', 'asteroids'],
 };

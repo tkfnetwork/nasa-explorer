@@ -23,7 +23,7 @@ export type OrbitalDataHelio = NearEarthObjectWithOrbital & {
   geo: ParticlePosition;
 };
 
-export const useAteroidsPositions = (ids: string[]) => {
+export const useAsteroidsPositionsWebsocket = (ids: string[]) => {
   const positionsMap = useMap<string, OrbitalDataHelio>();
   const { sendJsonMessage, lastJsonMessage } =
     useWebSocket<NearEarthObjectWithOrbital>(getWsUrl('/asteroids/positions'));

@@ -1,2 +1,2 @@
-export * from './useAsteroids';
-export * from './useAteroidsPositions';
+export * from './useAsteroidsQuery';
+export * from './useAsteroidsPositionsWebsocket';

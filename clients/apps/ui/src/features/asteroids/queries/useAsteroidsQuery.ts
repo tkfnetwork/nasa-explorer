@@ -7,7 +7,7 @@ export type UseAsteroidsOptions = {
   endDate?: Date;
 };
 
-export const useAsteroids = ({
+export const useAsteroidsQuery = ({
   startDate,
   endDate,
 }: UseAsteroidsOptions = {}) =>

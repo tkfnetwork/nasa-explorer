@@ -1,17 +1,18 @@
 import { Globe, type GlobeRef } from '@ne/components';
 import { useMountEffect } from '@react-hookz/web';
 import { useMemo, useRef } from 'react';
-import { useAteroidsPositions } from '../../queries';
+import { useAsteroidsPositionsWebsocket } from '../../queries';
 import { EARTH_RADIUS } from '../../utils';
 import type { AsteroidsGlobeProps } from './AsteroidsGlobe.types';
 
 export const AsteroidsGlobe = ({ ids }: AsteroidsGlobeProps) => {
   const globeRef = useRef<GlobeRef>(null);
-  const positionsMap = useAteroidsPositions(ids);
+  const positionsMap = useAsteroidsPositionsWebsocket(ids);
+  const keys = [...positionsMap.keys()];
 
   const particlesData = useMemo(
     () => [...positionsMap.values()].map(({ geo }) => geo),
-    [[...positionsMap.keys()]]
+    [keys]
   );
 
   useMountEffect(() => {

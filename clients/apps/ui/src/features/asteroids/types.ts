@@ -14,3 +14,5 @@ export type ParticlePosition = {
   color: string;
   size: number;
 };
+
+export type Units = 'kilometer' | 'miles' | 'feet';
