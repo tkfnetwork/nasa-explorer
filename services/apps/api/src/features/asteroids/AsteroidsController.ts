@@ -86,9 +86,7 @@ export class AsteroidsController implements AsteroidsControllerInterface {
     next: NextFunction
   ) => {
     try {
-      const data = await this.asteroidsService.getAsteroidsByDateRange(
-        req.query
-      );
+      const data = await this.asteroidsService.getByDateRange(req.query);
 
       res.json(data);
     } catch (e) {
@@ -116,7 +114,7 @@ export class AsteroidsController implements AsteroidsControllerInterface {
         const data = await Promise.all(
           batch.map(async (id) => {
             try {
-              const data = await this.asteroidsService.getPositionById(id);
+              const data = await this.asteroidsService.getById(id);
               return [id, data];
             } catch {
               // TODO: Add better reporting here on what went wrong

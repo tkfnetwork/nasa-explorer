@@ -108,5 +108,11 @@ export type NeoOrbitalData = {
 };
 
 export type NeoItem = NeoObjectBase & {
+  estimated_diameter: {
+    kilometers: {
+      estimated_diameter_min: number;
+      estimated_diameter_max: number;
+    };
+  };
   orbital_data: NeoOrbitalData;
 };

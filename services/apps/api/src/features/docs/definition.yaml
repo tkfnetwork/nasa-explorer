@@ -87,6 +87,15 @@ components:
         is_sentry_object:
           type: boolean
 
+    NearEarthObjectWithOrbital:
+      allOf:
+        - $ref: '#/components/schemas/NearEarthObject'
+        - type: object
+          properties:
+            orbital_data:
+              $ref: '#/components/schemas/OrbitalData'
+
+
     DiameterRange:
       type: object
       properties:

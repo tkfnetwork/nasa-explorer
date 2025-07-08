@@ -1,18 +1,19 @@
 import { inject, injectable } from 'inversify';
 import NodeCache from 'node-cache';
+import omit from 'lodash/omit';
 
 import { TYPES } from '../../di/TYPES';
-import type { NasaApiInterface, NeoOrbitalData } from '../api';
+import type { NasaApiInterface, NeoItem } from '../api';
 import type { GetAllQuery, GetAllResponse } from './types';
 
 export interface AsteroidsServiceInterface {
-  getAsteroidsByDateRange: (params?: GetAllQuery) => Promise<GetAllResponse>;
-  getPositionById: (id: string) => Promise<NeoOrbitalData>;
+  getByDateRange: (params?: GetAllQuery) => Promise<GetAllResponse>;
+  getById: (id: string) => Promise<NeoItem>;
 }
 
 @injectable()
 export class AsteroidsService implements AsteroidsServiceInterface {
-  private positionsCache = new NodeCache({
+  private itemsCache = new NodeCache({
     stdTTL: 86400,
   });
 
@@ -20,7 +21,7 @@ export class AsteroidsService implements AsteroidsServiceInterface {
     @inject(TYPES.NasaApi) private nasaApi: NasaApiInterface
   ) {}
 
-  public async getAsteroidsByDateRange({
+  public async getByDateRange({
     startDate: start_date,
     endDate: end_date,
   }: GetAllQuery = {}) {
@@ -40,8 +41,8 @@ export class AsteroidsService implements AsteroidsServiceInterface {
     };
   }
 
-  public async getPositionById(id: string) {
-    const cachedResult = this.positionsCache.get<NeoOrbitalData>(id);
+  public async getById(id: string) {
+    const cachedResult = this.itemsCache.get<NeoItem>(id);
 
     if (cachedResult) {
       return cachedResult;
@@ -49,8 +50,9 @@ export class AsteroidsService implements AsteroidsServiceInterface {
 
     const { data } = await this.nasaApi.neoById(id);
 
-    this.positionsCache.set<NeoOrbitalData>(id, data.orbital_data);
+    const item = omit(data, 'links') as NeoItem;
+    this.itemsCache.set<NeoItem>(id, { ...item });
 
-    return data.orbital_data;
+    return item;
   }
 }
