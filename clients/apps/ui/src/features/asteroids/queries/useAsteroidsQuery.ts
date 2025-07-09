@@ -1,5 +1,6 @@
-import { getAsteroidsOptions } from '@/api/generated/@tanstack/react-query.gen';
 import { apiClient } from '@/api/client';
+import { getAsteroidsOptions } from '@/api/generated/@tanstack/react-query.gen';
+import { formatDate } from '@/utils';
 import { useQuery } from '@tanstack/react-query';
 
 export type UseAsteroidsOptions = {
@@ -15,9 +16,8 @@ export const useAsteroidsQuery = ({
     ...getAsteroidsOptions({
       client: apiClient,
       query: {
-        startDate:
-          typeof startDate === 'string' ? startDate : startDate?.toISOString(),
-        endDate: typeof endDate === 'string' ? endDate : endDate?.toISOString(),
+        startDate: formatDate(startDate),
+        endDate: formatDate(endDate),
       },
     }),
   });

@@ -7,6 +7,7 @@ import { AsteroidsForm, type AsteroidsFormValues } from '../AsteroidsForm';
 import { AsteroidsGlobe } from '../AsteroidsGlobe';
 import { AsteroidsList } from '../AsteroidsList';
 import { AsteroidsPageProvider } from './AsteroidsPage.context';
+import type { AsteroidsPageContextValues } from './AsteroidsPage.types';
 
 export const AsteroidsPage = () => {
   const {
@@ -31,7 +32,14 @@ export const AsteroidsPage = () => {
 
   const ids = uniq(sortedData.map(({ id }) => id).filter(Boolean) as string[]);
 
-  const context = { isActive: isLoading, unit };
+  const context = {
+    isActive: isLoading,
+    unit,
+    dates: [
+      startDate ? new Date(startDate) : null,
+      endDate ? new Date(endDate) : null,
+    ],
+  } as AsteroidsPageContextValues;
 
   return (
     <AsteroidsPageProvider value={context}>

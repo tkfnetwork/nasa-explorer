@@ -16,7 +16,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { PiWarning } from 'react-icons/pi';
 import type { AsteroidsFormValues } from './AsteroidsForm.types';
 import { resolver } from './AsteroidsForm.validation';
-import { Units } from '@/utils';
+import { formatDate, Units } from '@/utils';
 import { useAsteroidsContext } from '../AsteroidsPage/AsteroidsPage.context';
 
 export const AsteroidsForm = () => {
@@ -25,13 +25,18 @@ export const AsteroidsForm = () => {
   const navigate = useNavigate();
   const pathname = useLocation({ select: (state) => state.pathname });
 
-  const { unit } = useAsteroidsContext();
+  const { unit, dates } = useAsteroidsContext();
 
   const { handleSubmit, watch, formState, setValue, control } =
     useForm<AsteroidsFormValues>({
       // @ts-expect-error Resolver doesn't infer default value
       resolver,
       mode: 'all',
+      defaultValues: {
+        unit,
+        startDate: dates?.[0] ?? undefined,
+        endDate: dates?.[1] ?? undefined,
+      },
     });
 
   const values = watch();
@@ -40,7 +45,11 @@ export const AsteroidsForm = () => {
     handleSubmit(async (values) => {
       await navigate({
         to: pathname,
-        search: values,
+        search: {
+          ...values,
+          startDate: formatDate(values.startDate),
+          endDate: formatDate(values.endDate),
+        },
       });
     })();
   }, [handleSubmit, navigate, pathname]);
