@@ -7,9 +7,10 @@ import { AsteroidsForm, type AsteroidsFormValues } from '../AsteroidsForm';
 import { AsteroidsGlobe } from '../AsteroidsGlobe';
 import { AsteroidsList } from '../AsteroidsList';
 import { AsteroidsPageProvider } from './AsteroidsPage.context';
-import type { AsteroidsPageContextValues } from './AsteroidsPage.types';
+import { useState } from 'react';
 
 export const AsteroidsPage = () => {
+  const [focusedId, setFocusedId] = useState<string | undefined>();
   const {
     startDate,
     endDate,
@@ -32,17 +33,19 @@ export const AsteroidsPage = () => {
 
   const ids = uniq(sortedData.map(({ id }) => id).filter(Boolean) as string[]);
 
-  const context = {
-    isActive: isLoading,
-    unit,
-    dates: [
-      startDate ? new Date(startDate) : null,
-      endDate ? new Date(endDate) : null,
-    ],
-  } as AsteroidsPageContextValues;
-
   return (
-    <AsteroidsPageProvider value={context}>
+    <AsteroidsPageProvider
+      value={{
+        focusedId,
+        setFocusedId,
+        isActive: isLoading,
+        unit,
+        dates: [
+          startDate ? new Date(startDate) : null,
+          endDate ? new Date(endDate) : null,
+        ],
+      }}
+    >
       <div className={cn('relative')}>
         <div className={cn('relative', 'z-10')}>
           <AsteroidsGlobe ids={ids} />

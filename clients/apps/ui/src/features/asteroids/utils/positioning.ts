@@ -106,6 +106,7 @@ export function itemToParticle(
 
   return {
     ...position,
+    id: neo.id!,
     lat,
     lng,
     alt: alt / (EARTH_RADIUS / 2),

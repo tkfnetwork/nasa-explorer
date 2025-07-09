@@ -1,28 +1,76 @@
 import { measureElementFirefoxFix } from '@/utils';
 import { cn, Container } from '@ne/components';
-import { useVirtualizer } from '@tanstack/react-virtual';
-import { useRef } from 'react';
+import {
+  useVirtualizer,
+  type VirtualizerOptions,
+  elementScroll,
+} from '@tanstack/react-virtual';
+import { useCallback, useRef } from 'react';
 import { useAsteroidsContext } from '../AsteroidsPage/AsteroidsPage.context';
 import type { AsteroidsListProps } from './AsteroidsList.types';
 import { AsteroidsListItem, AsteroidsListItemSkeleton } from './components';
+import { useUpdateEffect } from '@react-hookz/web';
+import { easeInOutQuint } from './AsteroidsList.utils';
 
 export const AsteroidsList = ({ data = [] }: AsteroidsListProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const scrollingRef = useRef<number>(null);
 
-  const { isActive, unit } = useAsteroidsContext();
+  const { isActive, unit, setFocusedId, focusedId } = useAsteroidsContext();
 
   const listItems =
     isActive && !data.length ? Array.from({ length: 10 }) : data;
 
-  const { getVirtualItems, getTotalSize, measureElement } = useVirtualizer({
-    count: listItems.length,
-    estimateSize: () => 12,
-    getScrollElement: () => containerRef.current,
-    measureElement: measureElementFirefoxFix(),
-    overscan: 5,
-  });
+  /**
+   * @see https://tanstack.com/virtual/latest/docs/framework/react/examples/smooth-scroll
+   */
+  const scrollToFn: VirtualizerOptions<any, any>['scrollToFn'] = useCallback(
+    (offset, canSmooth, instance) => {
+      const duration = 1000;
+      const start = containerRef.current?.scrollTop || 0;
+      const startTime = (scrollingRef.current = Date.now());
+
+      const run = () => {
+        if (scrollingRef.current !== startTime) return;
+        const now = Date.now();
+        const elapsed = now - startTime;
+        const progress = easeInOutQuint(Math.min(elapsed / duration, 1));
+        const interpolated = start + (offset - start) * progress;
+
+        if (elapsed < duration) {
+          elementScroll(interpolated, canSmooth, instance);
+          requestAnimationFrame(run);
+        } else {
+          elementScroll(interpolated, canSmooth, instance);
+        }
+      };
+
+      requestAnimationFrame(run);
+    },
+    []
+  );
+
+  const { getVirtualItems, getTotalSize, measureElement, scrollToIndex } =
+    useVirtualizer({
+      count: listItems.length,
+      estimateSize: () => 12,
+      getScrollElement: () => containerRef.current,
+      measureElement: measureElementFirefoxFix(),
+      overscan: 5,
+      scrollToFn,
+    });
 
   const virtualItems = getVirtualItems();
+
+  useUpdateEffect(() => {
+    if (focusedId) {
+      const index = data.findIndex(({ id }) => id === focusedId);
+
+      if (index >= 0) {
+        scrollToIndex(data.findIndex(({ id }) => id === focusedId));
+      }
+    }
+  }, [focusedId, data]);
 
   return (
     <Container
@@ -65,6 +113,8 @@ export const AsteroidsList = ({ data = [] }: AsteroidsListProps) => {
                 <AsteroidsListItemSkeleton />
               ) : (
                 <AsteroidsListItem
+                  className={cn(focusedId === item.id && 'brightness-150')}
+                  onClick={() => setFocusedId(item.id)}
                   name={item.name}
                   date={close_approach_data.close_approach_date}
                   diameter={

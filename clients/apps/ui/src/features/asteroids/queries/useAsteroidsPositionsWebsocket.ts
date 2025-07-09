@@ -19,12 +19,12 @@ const getWsUrl = (pathname?: string): string => {
   return url.toString();
 };
 
-export type OrbitalDataHelio = NearEarthObjectWithOrbital & {
+export type NearEarthObjectWithGeo = NearEarthObjectWithOrbital & {
   geo: ParticlePosition;
 };
 
 export const useAsteroidsPositionsWebsocket = (ids: string[]) => {
-  const positionsMap = useMap<string, OrbitalDataHelio>();
+  const positionsMap = useMap<string, NearEarthObjectWithGeo>();
   const { sendJsonMessage, lastJsonMessage } =
     useWebSocket<NearEarthObjectWithOrbital>(getWsUrl('/asteroids/positions'));
 

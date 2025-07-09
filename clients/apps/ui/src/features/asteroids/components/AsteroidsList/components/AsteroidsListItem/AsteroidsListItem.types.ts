@@ -7,4 +7,6 @@ export type AsteroidsListItemProps = {
   distance?: number | string;
   velocity?: number | string;
   externalUrl?: string;
+  className?: string;
+  onClick?: () => void;
 };

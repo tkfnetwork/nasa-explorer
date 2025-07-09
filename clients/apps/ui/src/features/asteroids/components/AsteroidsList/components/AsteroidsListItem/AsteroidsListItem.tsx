@@ -27,6 +27,8 @@ export const AsteroidsListItem = ({
   distance,
   velocity,
   externalUrl,
+  className,
+  onClick,
 }: AsteroidsListItemProps) => {
   const { t } = useTranslation(['asteroids', 'common']);
   const { unit } = useAsteroidsContext();
@@ -44,8 +46,12 @@ export const AsteroidsListItem = ({
         'brightness-120',
         'hover:brightness-130',
         'transition',
-        'duration-200'
+        'duration-200',
+        'cursor-pointer',
+        className
       )}
+      role="button"
+      onClick={onClick}
     >
       <CardHeader>
         <CardTitle className={cn('flex', 'justify-between', 'items-center')}>
