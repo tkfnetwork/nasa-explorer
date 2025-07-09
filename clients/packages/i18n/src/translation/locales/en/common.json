@@ -3,5 +3,11 @@
   "tryAgain": "Try again",
   "asteroids": "Asteroids",
   "copyright": "Copyright © {{year}}",
-  "learnMore": "Learn more"
+  "learnMore": "Learn more",
+  "startDate": "Start date",
+  "endDate": "End date",
+  "unit": "Unit",
+  "kilometers": "Kilometers",
+  "miles": "Miles",
+  "feet": "Feet"
 }

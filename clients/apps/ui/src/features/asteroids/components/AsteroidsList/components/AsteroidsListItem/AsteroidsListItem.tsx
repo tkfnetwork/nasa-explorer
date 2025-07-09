@@ -14,9 +14,9 @@ import {
 import { useTranslation } from '@ne/i18n/react';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import { PiSealWarningFill } from 'react-icons/pi';
-import type { AsteroidsListItemProps } from './AsteroidsListItem.types';
-import { labelClasses } from './AsteroidsListItem.styles';
 import { useAsteroidsContext } from '../../../AsteroidsPage/AsteroidsPage.context';
+import { labelClasses } from './AsteroidsListItem.styles';
+import type { AsteroidsListItemProps } from './AsteroidsListItem.types';
 
 export const AsteroidsListItem = ({
   name,
@@ -29,7 +29,6 @@ export const AsteroidsListItem = ({
   externalUrl,
 }: AsteroidsListItemProps) => {
   const { t } = useTranslation(['asteroids', 'common']);
-
   const { unit } = useAsteroidsContext();
 
   const distanceFormatter = formatByUnit(unit);
@@ -73,17 +72,17 @@ export const AsteroidsListItem = ({
           </dd>
         </dl>
         <ul className={cn('flex', 'justify-between', 'flex-wrap')}>
-          <li className={cn('flex', 'flex-col')}>
+          <li className={cn('flex', 'flex-col', 'basis-1/3')}>
             <span className={labelClasses}>{t('asteroids:orbiting')}</span>
             <span>{orbiting ?? '-'}</span>
           </li>
-          <li className={cn('flex', 'flex-col')}>
+          <li className={cn('flex', 'flex-col', 'basis-1/3')}>
             <span className={labelClasses}>{t('asteroids:distance')}</span>
-            <span>{distanceFormatter(distance)}</span>
+            <span>{distanceFormatter(distance) || '-'}</span>
           </li>
-          <li className={cn('flex', 'flex-col')}>
+          <li className={cn('flex', 'flex-col', 'basis-1/3')}>
             <span className={labelClasses}>{t('asteroids:velocity')}</span>
-            <span>{speedFormatter(velocity)}</span>
+            <span>{speedFormatter(velocity) || '-'}</span>
           </li>
         </ul>
       </CardContent>

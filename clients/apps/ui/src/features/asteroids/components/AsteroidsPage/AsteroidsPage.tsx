@@ -1,27 +1,37 @@
 import { cn } from '@ne/components';
+import { useSearch } from '@tanstack/react-router';
+import orderBy from 'lodash/orderBy';
+import uniq from 'lodash/uniq';
+import { useAsteroidsQuery } from '../../queries';
+import { AsteroidsForm, type AsteroidsFormValues } from '../AsteroidsForm';
 import { AsteroidsGlobe } from '../AsteroidsGlobe';
 import { AsteroidsList } from '../AsteroidsList';
-import { useAsteroidsQuery } from '../../queries';
-import uniq from 'lodash/uniq';
 import { AsteroidsPageProvider } from './AsteroidsPage.context';
-import { useMemo, useState } from 'react';
-import type { AsteroidsPageContextValues } from './AsteroidsPage.types';
 
 export const AsteroidsPage = () => {
-  const { data, isLoading } = useAsteroidsQuery();
-  const [unit] = useState<AsteroidsPageContextValues['unit']>('kilometer');
+  const {
+    startDate,
+    endDate,
+    unit = 'kilometers',
+  } = useSearch({
+    strict: false,
+    structuralSharing: false,
+  }) as AsteroidsFormValues;
 
-  const ids = uniq(
-    Object.values(data?.data ?? {})
-      .flat()
-      .map(({ id }) => id)
-      .filter(Boolean) as string[]
-  );
+  const { data, isLoading } = useAsteroidsQuery({
+    startDate,
+    endDate,
+  });
 
-  const context = useMemo(
-    () => ({ isActive: isLoading, unit }),
-    [isLoading, unit]
-  );
+  const sortedData = orderBy(
+    Object.entries(data?.data ?? {}),
+    [([date]) => new Date(date).getTime()],
+    ['desc']
+  ).flatMap(([, values]) => values);
+
+  const ids = uniq(sortedData.map(({ id }) => id).filter(Boolean) as string[]);
+
+  const context = { isActive: isLoading, unit };
 
   return (
     <AsteroidsPageProvider value={context}>
@@ -38,12 +48,16 @@ export const AsteroidsPage = () => {
             'flex',
             'flex-col',
             'justify-center',
+            'gap-3',
             'z-20',
             'w-[25%]'
           )}
         >
+          <div>
+            <AsteroidsForm />
+          </div>
           <div className={cn('h-[50%]', 'w-full')}>
-            <AsteroidsList data={Object.values(data?.data ?? {}).flat()} />
+            <AsteroidsList data={sortedData} />
           </div>
         </div>
       </div>

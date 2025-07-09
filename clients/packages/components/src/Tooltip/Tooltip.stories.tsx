@@ -4,7 +4,7 @@ import { Tooltip } from './Tooltip';
 type Story = StoryObj<typeof Tooltip>;
 
 export default {
-  title: 'Tooltip',
+  title: 'Dialog/Tooltip',
   component: Tooltip,
 } as Meta<typeof Tooltip>;
 

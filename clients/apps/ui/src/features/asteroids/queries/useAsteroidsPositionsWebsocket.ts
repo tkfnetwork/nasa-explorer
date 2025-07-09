@@ -29,8 +29,9 @@ export const useAsteroidsPositionsWebsocket = (ids: string[]) => {
     useWebSocket<NearEarthObjectWithOrbital>(getWsUrl('/asteroids/positions'));
 
   useDeepCompareEffect(() => {
+    positionsMap.clear();
     sendJsonMessage(ids);
-  }, [ids, sendJsonMessage]);
+  }, [ids, sendJsonMessage, positionsMap]);
 
   useEffect(() => {
     Object.entries(lastJsonMessage ?? {}).forEach(([id, item]) => {

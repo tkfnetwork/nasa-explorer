@@ -27,6 +27,6 @@
     "noUncheckedSideEffectImports": true,
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
-  "exclude": ["_templates"],
+  "exclude": ["_templates", "_mocks"],
   "include": ["src/**/*", "./vitest-setup.ts"]
 }

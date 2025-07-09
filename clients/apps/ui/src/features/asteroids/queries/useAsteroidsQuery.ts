@@ -15,8 +15,9 @@ export const useAsteroidsQuery = ({
     ...getAsteroidsOptions({
       client: apiClient,
       query: {
-        startDate: startDate?.toISOString(),
-        endDate: endDate?.toISOString(),
+        startDate:
+          typeof startDate === 'string' ? startDate : startDate?.toISOString(),
+        endDate: typeof endDate === 'string' ? endDate : endDate?.toISOString(),
       },
     }),
   });

@@ -13,6 +13,7 @@
     "generate:api": "openapi-ts"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.1.1",
     "@ne/components": "workspace:*",
     "@ne/i18n": "workspace:*",
     "@ne/theme": "workspace:*",
@@ -25,19 +26,23 @@
     "@tanstack/react-router-devtools": "^1.125.4",
     "@tanstack/react-virtual": "^3.13.12",
     "astronomia": "^4.1.1",
+    "date-fns": "^4.1.0",
     "lodash": "^4.17.21",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-hook-form": "^7.60.0",
     "react-icons": "^5.5.0",
     "react-use-websocket": "^4.13.0",
     "tailwindcss": "^4.1.11",
-    "three": "^0.178.0"
+    "three": "^0.178.0",
+    "zod": "^3.25.73"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
     "@hey-api/openapi-ts": "^0.78.2",
     "@tailwindcss/vite": "^4.1.11",
     "@tanstack/router-plugin": "^1.125.5",
+    "@types/date-fns": "^2.6.3",
     "@types/lodash": "^4.17.20",
     "@types/node": "^24.0.10",
     "@types/react": "^19.1.8",
