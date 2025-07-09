@@ -1,0 +1,5 @@
+.float-tooltip-kap {
+  font-size: var(--text-lg) !important;
+  padding: calc(var(--spacing) * 2) !important;
+  background: var(--color-card) !important;
+}

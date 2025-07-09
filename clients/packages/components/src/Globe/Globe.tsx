@@ -4,6 +4,7 @@ import { forwardRef, RefObject } from 'react';
 import BaseGlobe from 'react-globe.gl';
 import globe from './assets/earth-blue-marble.jpg';
 import type { GlobeProps, GlobeRef } from './Globe.types';
+import './Globe.css';
 
 export const Globe = forwardRef<GlobeRef, GlobeProps>(
   ({ className, ...props }, ref) => {
