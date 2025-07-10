@@ -29,6 +29,7 @@ export default defineConfig({
   },
   build: {
     cssCodeSplit: true,
+    sourcemap: true,
     minify: true,
     rollupOptions: {
       treeshake: 'smallest',

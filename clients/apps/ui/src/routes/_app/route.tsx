@@ -5,6 +5,9 @@ import { createFileRoute, Outlet, useMatches } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/_app')({
   component: RootLayout,
+  head: () => ({
+    links: [{ rel: 'preconnect', href: import.meta.env.VITE_API_BASE_URL }],
+  }),
 });
 
 function RootLayout() {
@@ -32,7 +35,7 @@ function RootLayout() {
           'flex-1',
           !isFullScreen && 'px-3',
           'py-2',
-          'overflow-auto'
+          'overflow-hidden'
         )}
       >
         <Outlet />

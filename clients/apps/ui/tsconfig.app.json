@@ -27,5 +27,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
+  "exclude": ["_mocks", "**/*.test.tsx", "**/*.stories.tsx"],
   "include": ["src"]
 }

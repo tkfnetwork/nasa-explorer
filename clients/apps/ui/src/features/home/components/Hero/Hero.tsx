@@ -25,6 +25,7 @@ export const Hero = () => {
       <div className={cn('relative', layerStyles, styles.layer)}>
         {!isLoadingData && data?.data?.small ? (
           <img
+            fetchPriority="high"
             alt="Hero"
             className={cn(
               'opacity-0',
@@ -34,6 +35,8 @@ export const Hero = () => {
               'h-full',
               'w-auto'
             )}
+            width="auto"
+            height="100%"
             src={data?.data?.small}
             onLoad={() => toggleImageLoaded()}
           />
