@@ -1,5 +1,6 @@
 import type { Preview } from '@storybook/react-vite';
 
+import '@ne/theme/fonts.css';
 import '../index.css';
 import { withThemeByClassName } from '@storybook/addon-themes';
 

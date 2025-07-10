@@ -55,8 +55,8 @@ export const AsteroidsList = ({ data = [] }: AsteroidsListProps) => {
   const { getVirtualItems, getTotalSize, measureElement, scrollToIndex } =
     useVirtualizer({
       count: listItems.length,
-      estimateSize: () => 12,
-      getScrollElement: () => containerRef.current,
+      estimateSize: useCallback(() => 12, []),
+      getScrollElement: useCallback(() => containerRef.current, []),
       measureElement: measureElementFirefoxFix(),
       overscan: 5,
       ...(!isTouch && { scrollToFn }),

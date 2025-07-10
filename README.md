@@ -128,14 +128,13 @@ This monorepo uses [pnpm workspaces](https://pnpm.io/workspaces) for dependency 
 
 ---
 
-## 🤝 Contributing
+## 🤝 Testing
 
-We welcome contributions to NASA Explorer! If you'd like to contribute:
+Run entire test suite for all packages and apps by running:
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/your-feature`)
-3. Commit your changes
-4. Open a pull request
+```sh
+pnpm test
+```
 
 ---
 

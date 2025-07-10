@@ -3,6 +3,7 @@
   display: flex;
   height: 100%;
   width: 100%;
+  font-family: var(--typography-font) !important;
 }
 
 .react-datepicker__input-container {
@@ -28,7 +29,8 @@
 
 h2.react-datepicker__current-month {
   margin-bottom: 1rem !important;
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
+  font-size: 1rem;
 }
 
 .react-datepicker__header__dropdown,
