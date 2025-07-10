@@ -36,7 +36,7 @@ afterEach(() => {
 });
 
 test('form is populated with default values', async () => {
-  const { baseElement } = renderComponent();
+  const { baseElement, rerender } = renderComponent();
 
   let inputElements = screen.getAllByLabelText('date input');
   let unitElement = baseElement.querySelector('[data-slot]="select-value"');
@@ -55,10 +55,7 @@ test('form is populated with default values', async () => {
     unit,
   }));
 
-  // Dont use `rerender` here as the values dont reset automatically
-  // TODO: add `reset` logic from RHF instead
-  cleanup();
-  renderComponent();
+  rerender(renderElement());
 
   inputElements = screen.getAllByLabelText('date input');
   unitElement = baseElement.querySelector('[data-slot]="select-value"');

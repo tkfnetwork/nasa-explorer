@@ -1,20 +1,22 @@
 import { measureElementFirefoxFix } from '@/utils';
-import { cn, Container } from '@ne/components';
+import { cn, Container, useIsTouch } from '@ne/components';
+import { useUpdateEffect } from '@react-hookz/web';
 import {
+  elementScroll,
   useVirtualizer,
   type VirtualizerOptions,
-  elementScroll,
 } from '@tanstack/react-virtual';
 import { useCallback, useRef } from 'react';
 import { useAsteroidsContext } from '../AsteroidsPage/AsteroidsPage.context';
 import type { AsteroidsListProps } from './AsteroidsList.types';
-import { AsteroidsListItem, AsteroidsListItemSkeleton } from './components';
-import { useUpdateEffect } from '@react-hookz/web';
 import { easeInOutQuint } from './AsteroidsList.utils';
+import { AsteroidsListItem, AsteroidsListItemSkeleton } from './components';
 
 export const AsteroidsList = ({ data = [] }: AsteroidsListProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollingRef = useRef<number>(null);
+
+  const isTouch = useIsTouch();
 
   const { isActive, unit, setFocusedId, focusedId } = useAsteroidsContext();
 
@@ -57,7 +59,7 @@ export const AsteroidsList = ({ data = [] }: AsteroidsListProps) => {
       getScrollElement: () => containerRef.current,
       measureElement: measureElementFirefoxFix(),
       overscan: 5,
-      scrollToFn,
+      ...(!isTouch && { scrollToFn }),
     });
 
   const virtualItems = getVirtualItems();

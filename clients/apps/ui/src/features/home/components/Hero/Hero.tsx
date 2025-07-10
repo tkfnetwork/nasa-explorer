@@ -10,7 +10,6 @@ export const Hero = () => {
   const { data, isLoading: isLoadingData } = useTodaysPictureQuery();
 
   const isLoading = isLoadingData || isLoadingImage;
-  console.log(data, isLoading);
 
   return (
     <div

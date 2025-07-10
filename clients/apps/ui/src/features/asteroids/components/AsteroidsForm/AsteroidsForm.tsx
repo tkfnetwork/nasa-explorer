@@ -9,7 +9,7 @@ import {
   type DatePickerRangeValue,
 } from '@ne/components';
 import { useTranslation } from '@ne/i18n/react';
-import { useDeepCompareMemo } from '@react-hookz/web';
+import { useDeepCompareMemo, useUpdateEffect } from '@react-hookz/web';
 import { useLocation, useNavigate } from '@tanstack/react-router';
 import { addDays, eachDayOfInterval, subDays } from 'date-fns';
 import { useCallback } from 'react';
@@ -27,17 +27,25 @@ export const AsteroidsForm = () => {
 
   const { unit, dates } = useAsteroidsContext();
 
-  const { handleSubmit, watch, formState, setValue, control } =
+  const defaults = {
+    unit,
+    startDate: dates?.[0] ?? undefined,
+    endDate: dates?.[1] ?? undefined,
+  };
+
+  const defaultsHash = JSON.stringify(Object.values(defaults).sort());
+
+  const { handleSubmit, watch, formState, setValue, control, reset } =
     useForm<AsteroidsFormValues>({
       // @ts-expect-error Resolver doesn't infer default value
       resolver,
       mode: 'all',
-      defaultValues: {
-        unit,
-        startDate: dates?.[0] ?? undefined,
-        endDate: dates?.[1] ?? undefined,
-      },
+      defaultValues: defaults,
     });
+
+  useUpdateEffect(() => {
+    reset(defaults);
+  }, [defaultsHash]);
 
   const values = watch();
 
