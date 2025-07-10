@@ -46,13 +46,22 @@ export const AsteroidsPage = () => {
         ],
       }}
     >
-      <div className={cn('relative')}>
-        <div className={cn('relative', 'z-10')}>
+      <div className={cn('relative', 'h-full', 'w-full')}>
+        <div
+          className={cn(
+            'relative',
+            'z-10',
+            'hidden',
+            'md:block!',
+            'h-full',
+            'w-full'
+          )}
+        >
           <AsteroidsGlobe ids={ids} />
         </div>
         <div
           className={cn(
-            'absolute',
+            'md:absolute',
             'top-3',
             'bottom-3',
             'right-3',
@@ -61,13 +70,15 @@ export const AsteroidsPage = () => {
             'justify-center',
             'gap-3',
             'z-20',
-            'w-[25%]'
+            'xl:w-1/4',
+            'lg:w-1/2',
+            'h-full'
           )}
         >
           <div>
             <AsteroidsForm />
           </div>
-          <div className={cn('h-[50%]', 'w-full')}>
+          <div className={cn('w-full', 'h-full', 'md:h-[50%]!')}>
             <AsteroidsList data={sortedData} />
           </div>
         </div>

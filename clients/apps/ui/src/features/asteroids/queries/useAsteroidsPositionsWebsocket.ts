@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import useWebSocket from 'react-use-websocket';
 import type { ParticlePosition } from '../types';
 import { itemToParticle } from '../utils/positioning';
+import { getRandomTexture } from '../utils';
 
 const getWsUrl = (pathname?: string): string => {
   const url = new URL(import.meta.env.VITE_API_BASE_URL);
@@ -37,7 +38,10 @@ export const useAsteroidsPositionsWebsocket = (ids: string[]) => {
     Object.entries(lastJsonMessage ?? {}).forEach(([id, item]) => {
       positionsMap.set(id, {
         ...(item as NearEarthObjectWithOrbital),
-        geo: itemToParticle(item as NearEarthObjectWithOrbital),
+        geo: {
+          ...itemToParticle(item as NearEarthObjectWithOrbital),
+          texture: getRandomTexture(),
+        },
       });
     });
   }, [positionsMap, lastJsonMessage]);

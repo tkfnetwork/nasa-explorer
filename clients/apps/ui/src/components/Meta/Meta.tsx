@@ -14,7 +14,7 @@ export const Meta = () => {
       .toReversed()
       .map((match) => match?.meta?.find((item) => item?.title)?.title)
       .filter(Boolean)
-      .join(' | ');
+      .join(' • ');
   }, [matches]);
 
   return null;

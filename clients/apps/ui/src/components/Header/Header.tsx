@@ -17,7 +17,11 @@ export const Header = () => {
 
   return (
     <Container>
-      <Link to="/">
+      <Link
+        to="/"
+        aria-label={t('common:nasaExplorer')}
+        className={cn('flex', 'items-center')}
+      >
         <Logo className={cn('shrink-0', 'h-8')} />
       </Link>
       <NavMenu>

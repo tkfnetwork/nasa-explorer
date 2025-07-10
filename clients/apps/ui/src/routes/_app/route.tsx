@@ -1,6 +1,6 @@
 import { Header } from '@/components';
 import { Footer } from '@/components/Footer';
-import { cn } from '@ne/components';
+import { cn, useBreakpoints } from '@ne/components';
 import { createFileRoute, Outlet, useMatches } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/_app')({
@@ -10,9 +10,10 @@ export const Route = createFileRoute('/_app')({
 function RootLayout() {
   const matches = useMatches();
 
-  const isFullScreen = Boolean(
-    matches.toReversed().at(0)?.staticData?.fullScreen
-  );
+  const { md } = useBreakpoints('min');
+
+  const isFullScreen =
+    md && Boolean(matches.toReversed().at(0)?.staticData?.fullScreen);
 
   return (
     <div
@@ -26,7 +27,14 @@ function RootLayout() {
       >
         <Header />
       </div>
-      <main className={cn('flex-1', !isFullScreen && 'px-3', 'py-2')}>
+      <main
+        className={cn(
+          'flex-1',
+          !isFullScreen && 'px-3',
+          'py-2',
+          'overflow-auto'
+        )}
+      >
         <Outlet />
       </main>
       <div

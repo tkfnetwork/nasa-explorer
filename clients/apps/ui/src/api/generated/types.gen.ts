@@ -163,7 +163,9 @@ export type GetTodaysPictureResponses = {
   /**
    * Object containing high res and low res image urls
    */
-  200: Picture;
+  200: {
+    data?: Picture;
+  };
 };
 
 export type GetTodaysPictureResponse =

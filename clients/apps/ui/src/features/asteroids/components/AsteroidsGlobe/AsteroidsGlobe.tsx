@@ -7,7 +7,6 @@ import type { ParticlePosition } from '../../types';
 import { EARTH_RADIUS } from '../../utils';
 import { useAsteroidsContext } from '../AsteroidsPage/AsteroidsPage.context';
 import type { AsteroidsGlobeProps } from './AsteroidsGlobe.types';
-import { getRandomTexture } from './AsteroidsGlobe.utils';
 
 export const AsteroidsGlobe = ({ ids }: AsteroidsGlobeProps) => {
   const globeRef = useRef<GlobeRef>(null);
@@ -20,10 +19,12 @@ export const AsteroidsGlobe = ({ ids }: AsteroidsGlobeProps) => {
   const particlesData = useMemo(
     () =>
       [...positionsMap.values()].map(({ id, geo, name }) => [
-        { ...geo, id, name, texture: getRandomTexture() },
+        { ...geo, id, name },
       ]),
     [JSON.stringify(keys)]
   );
+
+  console.log(particlesData);
 
   useMountEffect(() => {
     const globe = globeRef.current;
@@ -43,7 +44,7 @@ export const AsteroidsGlobe = ({ ids }: AsteroidsGlobeProps) => {
     const position = positionsMap.get(focusedId)!;
 
     globe.pointOfView(
-      { ...position.geo, altitude: position.geo.alt + 0.5 },
+      { ...position.geo, altitude: position.geo.alt + 1 },
       1000
     );
   }, [focusedId, positionsMap]);
