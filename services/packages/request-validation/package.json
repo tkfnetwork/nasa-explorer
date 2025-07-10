@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {},
-  "author": "",
+  "author": "Kris Pomphrey <kris@tkf.network>",
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^5.0.3",

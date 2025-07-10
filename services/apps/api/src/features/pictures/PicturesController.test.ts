@@ -46,8 +46,10 @@ describe('GET /pictures/today', () => {
       .expect(StatusCodes.OK);
 
     expect(JSON.parse(res.text)).toEqual({
-      large: expected.hdurl,
-      small: expected.url,
+      data: {
+        large: expected.hdurl,
+        small: expected.url,
+      },
     });
   });
 });

@@ -7,6 +7,7 @@
     "test:ci": "pnpm recursive run test --coverage --ci",
     "lint": "pnpm recursive run lint",
     "lint:styles": "pnpm recursive run lint:styles",
+    "code:qa": "pnpm prettier && pnpm lint && pnpm lint:styles",
     "prepare": "husky",
     "prettier": "pnpm recursive run prettier",
     "dev": "pnpm run --parallel -r dev",

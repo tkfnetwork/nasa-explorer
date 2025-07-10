@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "main": "dist/index.js",
+  "author": "Kris Pomphrey <kris@tkf.network>",
   "scripts": {
     "dev": "pnpm build --watch",
     "build": "tsc -b && vite build",

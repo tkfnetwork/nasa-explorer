@@ -1,69 +1,111 @@
-# React + TypeScript + Vite
+# 🚀 NASA Explorer UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The **NASA Explorer UI** is a modern, interactive frontend application designed to visualize and explore NASA datasets in an immersive 3D globe interface. Built using modern web technologies, the project focuses on performance, accessibility, and developer experience.
 
-Currently, two official plugins are available:
+This project is the frontend for the NASA Explorer platform.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+This application is built using the following tools and libraries:
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **[React](https://reactjs.org/):** JavaScript library for building user interfaces
+- **[@tanstack/react-router](https://tanstack.com/router):** Type-safe and powerful routing for React
+- **[@tanstack/react-virtual](https://tanstack.com/virtual):** High-performance virtual scrolling
+- **[globe.gl](https://globe.gl/):** WebGL globe for geospatial data visualization
+- **[Three.js](https://threejs.org/):** JavaScript 3D library for rendering scenes in WebGL
+- **[Tailwind CSS](https://tailwindcss.com/):** Utility-first CSS framework
+- **[Vite](https://vitejs.dev/):** Lightning-fast build tool for modern web projects
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+## ⚙️ Getting Started
+
+### 📦 Installation
+
+Install dependencies using [pnpm](https://pnpm.io/):
+
+```sh
+pnpm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+If you don’t have `pnpm` installed, install it globally:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```sh
+npm install -g pnpm
 ```
+
+---
+
+### 🔐 Environment Variables
+
+1. Copy the example environment file:
+
+```sh
+cp .env.example .env
+```
+
+2. Populate the `.env` file with the required variables:
+
+| Variable            | Description                      |
+| ------------------- | -------------------------------- |
+| `VITE_API_BASE_URL` | Base URL for the NASA API server |
+
+Environment variables are **validated at runtime** using a [`zod`](https://zod.dev/) schema defined in `src/config/validation`.
+
+> **Note:** Vite requires all environment variables to be defined at **build time**. Make sure your `.env` file is present before running `pnpm build`.
+
+---
+
+### ✅ Accessing Env Vars Properly
+
+All environment variables are parsed and exposed via named exports from the `@/config` module. Do **not** access them directly via `import.meta.env`.
+
+#### ✅ Correct Usage:
+
+```ts
+import { API_BASE_URL } from '@/config';
+
+console.log(API_BASE_URL);
+```
+
+#### ❌ Avoid This:
+
+```ts
+console.log(import.meta.env.VITE_API_BASE_URL);
+```
+
+For more info, [see Vite’s guide on env variables](https://vite.dev/guide/env-and-mode.html#env-variables).
+
+---
+
+## 🚀 Running the App
+
+### 🧪 Development
+
+Start the development server with:
+
+```sh
+pnpm dev
+```
+
+The app will be available at `http://localhost:5173` by default.
+
+---
+
+### 📦 Production
+
+Build and preview the application locally:
+
+```sh
+pnpm build && pnpm preview
+```
+
+This generates an optimized production build and serves it locally for testing.
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).

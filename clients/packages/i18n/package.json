@@ -6,12 +6,11 @@
   "type": "module",
   "sideEffects": true,
   "scripts": {
-    "test": "jest --passWithNoTests",
     "prettier": "prettier --write \"**/*.{jsx,js,tsx,ts,json,yaml,css,mjs}\"",
     "lint": "eslint ."
   },
   "keywords": [],
-  "author": "",
+  "author": "Kris Pomphrey <kris@tkf.network>",
   "license": "ISC",
   "packageManager": "pnpm@10.11.0",
   "dependencies": {
