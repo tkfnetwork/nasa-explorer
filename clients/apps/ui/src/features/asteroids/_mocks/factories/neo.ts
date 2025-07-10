@@ -3,6 +3,7 @@ import { faker } from '@faker-js/faker';
 import * as Factory from 'factory.ts';
 
 export const neoFactory = Factory.Sync.makeFactory<NearEarthObject>({
+  id: Factory.each(() => faker.string.numeric()),
   absolute_magnitude_h: faker.number.int(),
   close_approach_data: [
     {
