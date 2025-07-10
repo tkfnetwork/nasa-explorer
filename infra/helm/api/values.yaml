@@ -1,0 +1,48 @@
+replicaCount: 1
+
+image:
+  pullPolicy: Always
+  tag: latest
+
+service:
+  type: ClusterIP
+  port: 3008
+  targetPort: 3008
+
+ingress:
+  enabled: true
+  className: kong
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+
+  hosts:
+    - host: api.nasa-explorer.tkf.network
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - hosts:
+        - api.nasa-explorer.tkf.network
+      secretName: tls-api-ne
+
+serviceAccount:
+  create: true
+  automount: true
+
+livenessProbe:
+  httpGet:
+    path: /healthcheck
+    port: http
+readinessProbe:
+  httpGet:
+    path: /healthcheck
+    port: http
+
+autoscaling:
+  enabled: false
+
+envSecret:
+  name: api-env
+  keys:
+    - NASA_API_BASE_URL
+    - NASA_API_KEY
