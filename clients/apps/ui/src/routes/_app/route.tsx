@@ -1,12 +1,13 @@
 import { Header } from '@/components';
 import { Footer } from '@/components/Footer';
+import { API_BASE_URL } from '@/config';
 import { cn, useBreakpoints } from '@ne/components';
 import { createFileRoute, Outlet, useMatches } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/_app')({
   component: RootLayout,
   head: () => ({
-    links: [{ rel: 'preconnect', href: import.meta.env.VITE_API_BASE_URL }],
+    links: [{ rel: 'preconnect', href: API_BASE_URL }],
   }),
 });
 

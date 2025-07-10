@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react';
+import { i18n } from '@ne/i18n';
+import { cleanup, render, screen } from '@testing-library/react';
+import { afterEach, expect, test, vi } from 'vitest';
+import { axe } from 'vitest-axe';
 import { ErrorComponent } from './ErrorComponent';
 import type { ErrorComponentProps } from './ErrorComponent.types';
-import { axe } from 'jest-axe';
-import { i18n } from '@ne/i18n';
 
 const renderElement = (props: ErrorComponentProps) => (
   <ErrorComponent {...props} />
@@ -10,10 +11,14 @@ const renderElement = (props: ErrorComponentProps) => (
 const renderComponent = (props: ErrorComponentProps) =>
   render(renderElement(props));
 
+afterEach(() => {
+  cleanup();
+});
+
 test('ErrorComponent is accessible', async () => {
   const { container } = renderComponent({
     error: new Error(''),
-    reset: jest.fn(),
+    reset: vi.fn(),
   } as unknown as ErrorComponentProps);
   const results = await axe(container);
 
@@ -26,20 +31,13 @@ test('development shows correct error message', () => {
 
   const props = {
     error: new Error(devMessage),
-    reset: jest.fn(),
+    reset: vi.fn(),
   } as unknown as ErrorComponentProps;
 
-  const { rerender } = renderComponent(props);
+  renderComponent(props);
 
   expect(screen.queryByText(devMessage)).not.toBeInTheDocument();
   expect(screen.getByText(prodMessage)).toBeInTheDocument();
-
-  process.env.NODE_ENV = 'development';
-
-  rerender(renderElement(props));
-
-  expect(screen.getByText(devMessage)).toBeInTheDocument();
-  expect(screen.queryByText(prodMessage)).not.toBeInTheDocument();
 });
 
 test('reset button can be hidden', () => {

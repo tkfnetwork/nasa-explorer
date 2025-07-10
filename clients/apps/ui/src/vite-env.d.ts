@@ -1,5 +1,6 @@
 /// <reference types="vite/client" />
 /// <reference types="vite-plugin-svgr/client" />
+
 import '@tanstack/react-router';
 
 declare module 'astronomia';

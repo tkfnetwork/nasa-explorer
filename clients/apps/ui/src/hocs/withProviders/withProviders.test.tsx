@@ -1,9 +1,10 @@
 import { render } from '@testing-library/react';
 import type { FunctionComponent } from 'react';
+import { expect, test, vi } from 'vitest';
 import { withProviders } from './withProviders';
 
-jest.mock('../../config/core', () => ({
-  getEnv: jest.fn(() => ({
+vi.mock('../../config/core', () => ({
+  getEnv: vi.fn(() => ({
     VITE_SANITY_PROJECT_ID: '12344567889',
     VITE_SANITY_DATASET: '2345678998765',
     VITE_ANJ_ID: 'ce5da088-39a1-4dea-8582-7a3d95b491f2',

@@ -1,10 +1,15 @@
-import { render, screen } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { NotFoundError } from './NotFoundError';
-import { axe } from 'jest-axe';
+import { axe } from 'vitest-axe';
+import { afterEach, expect, test, vi } from 'vitest';
 
 const renderElement = () => <NotFoundError />;
 const renderComponent = () => render(renderElement());
+
+afterEach(() => {
+  cleanup();
+});
 
 test('NotFoundError is accessible', async () => {
   const { container } = renderComponent();
@@ -14,7 +19,7 @@ test('NotFoundError is accessible', async () => {
 });
 
 test('user can go back', async () => {
-  const windowSpy = jest.spyOn(window.history, 'back');
+  const windowSpy = vi.spyOn(window.history, 'back');
 
   renderComponent();
 

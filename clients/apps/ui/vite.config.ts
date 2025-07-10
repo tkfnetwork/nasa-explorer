@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react';
 import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import tailwindcss from '@tailwindcss/vite';
 import svgr from 'vite-plugin-svgr';
+import { coverageConfigDefaults } from 'vitest/config';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -42,6 +43,23 @@ export default defineConfig({
           return null;
         },
       },
+    },
+  },
+  test: {
+    environment: 'happy-dom',
+    setupFiles: ['vitest-setup.ts'],
+    coverage: {
+      provider: 'v8',
+      exclude: [
+        '**/_templates/**',
+        '**/build/**',
+        '**/dist/**',
+        '**/index.ts',
+        '**/*.types.ts',
+        '**/*.stories.tsx',
+        ...coverageConfigDefaults.exclude,
+      ],
+      include: ['**/src/**/*'],
     },
   },
 });

@@ -2,6 +2,7 @@ import { Button, cn } from '@ne/components';
 import { useTranslation } from '@ne/i18n/react';
 import type { ErrorComponentProps } from './ErrorComponent.types';
 import { Logo } from '../Logo';
+import { isDev } from '@/config';
 
 export const ErrorComponent = ({
   error,
@@ -10,10 +11,7 @@ export const ErrorComponent = ({
 }: ErrorComponentProps) => {
   const { t } = useTranslation(['common']);
 
-  const message =
-    process.env.NODE_ENV === 'development'
-      ? error?.message?.toString()
-      : t('common:oopsProblem');
+  const message = isDev ? error?.message?.toString() : t('common:oopsProblem');
 
   return (
     <div

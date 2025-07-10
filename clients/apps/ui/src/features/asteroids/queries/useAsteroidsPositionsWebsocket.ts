@@ -5,9 +5,10 @@ import useWebSocket from 'react-use-websocket';
 import type { ParticlePosition } from '../types';
 import { itemToParticle } from '../utils/positioning';
 import { getRandomTexture } from '../utils';
+import { API_BASE_URL } from '@/config';
 
 const getWsUrl = (pathname?: string): string => {
-  const url = new URL(import.meta.env.VITE_API_BASE_URL);
+  const url = new URL(API_BASE_URL);
 
   url.protocol = url.protocol.replace(/^https?:\/\//, (m) =>
     m === 'https' ? 'wss' : 'ws'

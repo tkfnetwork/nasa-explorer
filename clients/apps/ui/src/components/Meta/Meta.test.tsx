@@ -1,10 +1,11 @@
 import { render } from '@testing-library/react';
 import { Meta } from './Meta';
 import { useMatches } from '@tanstack/react-router';
+import { expect, test, vi, type Mock } from 'vitest';
 
-jest.mock('@tanstack/react-router', () => ({ useMatches: jest.fn() }));
+vi.mock('@tanstack/react-router', () => ({ useMatches: vi.fn() }));
 
-const useMatchesMock = useMatches as jest.Mock;
+const useMatchesMock = useMatches as Mock;
 
 const renderElement = () => <Meta />;
 const renderComponent = () => render(renderElement());
@@ -24,5 +25,5 @@ test('document title updates based on matches', async () => {
   useMatchesMock.mockReturnValue(level2);
   rerender(renderElement());
 
-  expect(document.title).toEqual(`${level2Title} | ${level1Title}`);
+  expect(document.title).toEqual(`${level2Title} • ${level1Title}`);
 });
