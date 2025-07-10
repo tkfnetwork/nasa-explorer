@@ -5,10 +5,5 @@ export const Route = createFileRoute('/_app/')({
   component: HomePage,
   head: () => ({
     links: [{ rel: 'preconnect', href: 'https://apod.nasa.gov' }],
-    meta: [
-      {
-        title: 'Asteroids',
-      },
-    ],
   }),
 });
