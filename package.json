@@ -8,7 +8,11 @@
     "lint": "pnpm recursive run lint",
     "lint:styles": "pnpm recursive run lint:styles",
     "prepare": "husky",
-    "prettier": "pnpm recursive run prettier"
+    "prettier": "pnpm recursive run prettier",
+    "dev": "pnpm run --parallel -r dev",
+    "build:api": "pnpm --filter api build",
+    "build:ui": "pnpm --filter ui build",
+    "docker:api": "docker build . -f ./services/apps/api/Dockerfile"
   },
   "keywords": [],
   "author": "Kris Pomphrey <kris@tkf.network>",

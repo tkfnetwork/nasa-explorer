@@ -8,9 +8,13 @@ import '@testing-library/jest-dom/vitest';
  *
  * @see https://github.com/TanStack/virtual/issues/641
  */
+// eslint-disable-next-line
+// @ts-ignore HTMLElement is not inferred during build
 Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
   value: 800,
 });
+// eslint-disable-next-line
+// @ts-ignore HTMLElement is not inferred during build
 Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
   value: 800,
 });

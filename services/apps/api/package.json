@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "prepare": "pnpm generate:openapi-spec",
-    "build": "rimraf dist && esbuild --bundle  --platform=node --format=esm ./src/index.ts --outfile=dist/server.js",
+    "build": "rimraf dist && esbuild --bundle --platform=node --format=cjs ./src/index.ts --outfile=dist/server.js",
     "dev": "tsx --watch ./src/index.ts",
     "lint": "eslint --fix",
     "prettier": "prettier --write \"**/*.{ts,tsx,md,css,json}\"",
