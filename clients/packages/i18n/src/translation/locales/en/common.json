@@ -1,4 +1,5 @@
 {
+  "nasaExplorer": "NASA Explorer",
   "oopsProblem": "Oops! There was a problem!",
   "tryAgain": "Try again",
   "asteroids": "Asteroids",
@@ -9,5 +10,8 @@
   "unit": "Unit",
   "kilometers": "Kilometers",
   "miles": "Miles",
-  "feet": "Feet"
+  "feet": "Feet",
+  "welcomeExplorer": "Welcome to the  $t(nasaExplorer)!",
+  "description": "Embark on a Cosmic Journey. Explore the vast reaches of space from the comfort of your screen. Dive into our interactive asteroid field viewer, where you can navigate through celestial wonders, learn about asteroid compositions, and track their orbits in real-time. Your portal to the universe awaits!",
+  "disclaimer": "NASA Explorer is an independent, non-commercial project created for educational and informational purposes. This website utilizes publicly available data provided by the NASA Open APIs to render interactive visualizations of asteroid fields and other space-related content.\nAll NASA data and media used on this site are the property of the National Aeronautics and Space Administration (NASA) and are protected by copyright where applicable. NASA's name, logos, and imagery are used in accordance with the guidelines outlined in their official media usage policy. No affiliation with or endorsement by NASA is intended or implied.\nWhile we strive to ensure the accuracy and timeliness of the information presented, NASA Explorer is not responsible for the completeness or reliability of the external data. Visitors are encouraged to consult official NASA sources for the most authoritative information.\nBy using this site, you acknowledge that all NASA materials remain © NASA and that this website operates solely as an independent platform to showcase publicly available space data for educational exploration."
 }

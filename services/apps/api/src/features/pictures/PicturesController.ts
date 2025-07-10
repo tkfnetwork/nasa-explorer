@@ -42,7 +42,10 @@ export class PicturesController implements PicturesControllerInterface {
    *         content:
    *           application/json:
    *             schema:
-   *               $ref: '#/components/schemas/Picture'
+   *               type: object
+   *               properties:
+   *                 data:
+   *                   $ref: '#/components/schemas/Picture'
    *       500:
    *         description: Internal Server Error
    *         content:
