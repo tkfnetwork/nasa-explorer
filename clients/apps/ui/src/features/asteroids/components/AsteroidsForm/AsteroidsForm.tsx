@@ -1,3 +1,4 @@
+import { formatDate, Units } from '@/utils';
 import {
   cn,
   DatePicker,
@@ -14,10 +15,9 @@ import { addDays, eachDayOfInterval, subDays } from 'date-fns';
 import { useCallback } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { PiWarning } from 'react-icons/pi';
+import { useAsteroidsContext } from '../AsteroidsPage/AsteroidsPage.context';
 import type { AsteroidsFormValues } from './AsteroidsForm.types';
 import { resolver } from './AsteroidsForm.validation';
-import { formatDate, Units } from '@/utils';
-import { useAsteroidsContext } from '../AsteroidsPage/AsteroidsPage.context';
 
 export const AsteroidsForm = () => {
   const { t } = useTranslation(['common']);
@@ -119,7 +119,10 @@ export const AsteroidsForm = () => {
       {hasErrors ? (
         <Tooltip>
           <TooltipTrigger asChild>
-            <PiWarning className={cn('text-amber-400', 'text-lg')} />
+            <PiWarning
+              title={t('common:validationErrors')}
+              className={cn('text-amber-400', 'text-lg')}
+            />
           </TooltipTrigger>
           <TooltipContent>
             <ul>
