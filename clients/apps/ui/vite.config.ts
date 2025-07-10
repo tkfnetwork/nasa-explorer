@@ -57,6 +57,11 @@ export default defineConfig({
         '**/index.ts',
         '**/*.types.ts',
         '**/*.stories.tsx',
+        '**/routeTree.gen.ts',
+        '**/routes/**',
+        '**/generated/**',
+        // Firefox fix is for navigator
+        '**/utils/virtual.ts',
         ...coverageConfigDefaults.exclude,
       ],
       include: ['**/src/**/*'],
