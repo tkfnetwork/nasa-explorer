@@ -22,7 +22,7 @@ export const Hero = () => {
         styles.base
       )}
     >
-      <div className={cn('relative', layerStyles, styles.layer)}>
+      <div className={cn('relative', 'flex-1', layerStyles, styles.layer)}>
         {!isLoadingData && data?.data?.small ? (
           <img
             fetchPriority="high"

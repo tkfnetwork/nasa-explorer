@@ -8,113 +8,113 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root';
-import { Route as AppRouteRouteImport } from './routes/_app/route';
-import { Route as AppIndexRouteImport } from './routes/_app/index';
-import { Route as AppCopyrightIndexRouteImport } from './routes/_app/copyright/index';
-import { Route as AppAsteroidsIndexRouteImport } from './routes/_app/asteroids/index';
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as AppRouteRouteImport } from './routes/_app/route'
+import { Route as AppIndexRouteImport } from './routes/_app/index'
+import { Route as AppCopyrightIndexRouteImport } from './routes/_app/copyright/index'
+import { Route as AppAsteroidsIndexRouteImport } from './routes/_app/asteroids/index'
 
 const AppRouteRoute = AppRouteRouteImport.update({
   id: '/_app',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AppRouteRoute,
-} as any);
+} as any)
 const AppCopyrightIndexRoute = AppCopyrightIndexRouteImport.update({
   id: '/copyright/',
   path: '/copyright/',
   getParentRoute: () => AppRouteRoute,
-} as any);
+} as any)
 const AppAsteroidsIndexRoute = AppAsteroidsIndexRouteImport.update({
   id: '/asteroids/',
   path: '/asteroids/',
   getParentRoute: () => AppRouteRoute,
-} as any);
+} as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof AppIndexRoute;
-  '/asteroids': typeof AppAsteroidsIndexRoute;
-  '/copyright': typeof AppCopyrightIndexRoute;
+  '/': typeof AppIndexRoute
+  '/asteroids': typeof AppAsteroidsIndexRoute
+  '/copyright': typeof AppCopyrightIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof AppIndexRoute;
-  '/asteroids': typeof AppAsteroidsIndexRoute;
-  '/copyright': typeof AppCopyrightIndexRoute;
+  '/': typeof AppIndexRoute
+  '/asteroids': typeof AppAsteroidsIndexRoute
+  '/copyright': typeof AppCopyrightIndexRoute
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport;
-  '/_app': typeof AppRouteRouteWithChildren;
-  '/_app/': typeof AppIndexRoute;
-  '/_app/asteroids/': typeof AppAsteroidsIndexRoute;
-  '/_app/copyright/': typeof AppCopyrightIndexRoute;
+  __root__: typeof rootRouteImport
+  '/_app': typeof AppRouteRouteWithChildren
+  '/_app/': typeof AppIndexRoute
+  '/_app/asteroids/': typeof AppAsteroidsIndexRoute
+  '/_app/copyright/': typeof AppCopyrightIndexRoute
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: '/' | '/asteroids' | '/copyright';
-  fileRoutesByTo: FileRoutesByTo;
-  to: '/' | '/asteroids' | '/copyright';
-  id: '__root__' | '/_app' | '/_app/' | '/_app/asteroids/' | '/_app/copyright/';
-  fileRoutesById: FileRoutesById;
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths: '/' | '/asteroids' | '/copyright'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/asteroids' | '/copyright'
+  id: '__root__' | '/_app' | '/_app/' | '/_app/asteroids/' | '/_app/copyright/'
+  fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  AppRouteRoute: typeof AppRouteRouteWithChildren;
+  AppRouteRoute: typeof AppRouteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/_app': {
-      id: '/_app';
-      path: '';
-      fullPath: '';
-      preLoaderRoute: typeof AppRouteRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/_app'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AppRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_app/': {
-      id: '/_app/';
-      path: '/';
-      fullPath: '/';
-      preLoaderRoute: typeof AppIndexRouteImport;
-      parentRoute: typeof AppRouteRoute;
-    };
+      id: '/_app/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
     '/_app/copyright/': {
-      id: '/_app/copyright/';
-      path: '/copyright';
-      fullPath: '/copyright';
-      preLoaderRoute: typeof AppCopyrightIndexRouteImport;
-      parentRoute: typeof AppRouteRoute;
-    };
+      id: '/_app/copyright/'
+      path: '/copyright'
+      fullPath: '/copyright'
+      preLoaderRoute: typeof AppCopyrightIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
     '/_app/asteroids/': {
-      id: '/_app/asteroids/';
-      path: '/asteroids';
-      fullPath: '/asteroids';
-      preLoaderRoute: typeof AppAsteroidsIndexRouteImport;
-      parentRoute: typeof AppRouteRoute;
-    };
+      id: '/_app/asteroids/'
+      path: '/asteroids'
+      fullPath: '/asteroids'
+      preLoaderRoute: typeof AppAsteroidsIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
   }
 }
 
 interface AppRouteRouteChildren {
-  AppIndexRoute: typeof AppIndexRoute;
-  AppAsteroidsIndexRoute: typeof AppAsteroidsIndexRoute;
-  AppCopyrightIndexRoute: typeof AppCopyrightIndexRoute;
+  AppIndexRoute: typeof AppIndexRoute
+  AppAsteroidsIndexRoute: typeof AppAsteroidsIndexRoute
+  AppCopyrightIndexRoute: typeof AppCopyrightIndexRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppIndexRoute: AppIndexRoute,
   AppAsteroidsIndexRoute: AppAsteroidsIndexRoute,
   AppCopyrightIndexRoute: AppCopyrightIndexRoute,
-};
+}
 
 const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
-  AppRouteRouteChildren
-);
+  AppRouteRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   AppRouteRoute: AppRouteRouteWithChildren,
-};
+}
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>();
+  ._addFileTypes<FileRouteTypes>()
