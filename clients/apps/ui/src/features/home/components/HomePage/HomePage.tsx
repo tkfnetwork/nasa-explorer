@@ -29,7 +29,8 @@ export const HomePage = () => {
           'overflow-auto',
           'max-md:flex-col',
           'items-center',
-          'md:gap-4'
+          'md:gap-4',
+          'flex-1'
         )}
       >
         <div className={cn('basis-1/2', 'flex', 'flex-col', 'gap-4')}>
