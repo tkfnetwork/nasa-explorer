@@ -24,8 +24,6 @@ export const AsteroidsGlobe = ({ ids }: AsteroidsGlobeProps) => {
     [JSON.stringify(keys)]
   );
 
-  console.log(particlesData);
-
   useMountEffect(() => {
     const globe = globeRef.current;
     if (!globe) return;
