@@ -10,7 +10,7 @@ import {
 } from '@ne/components';
 
 export const AsteroidsListItemSkeleton = () => (
-  <Card className={cn('brightness-120')}>
+  <Card data-skeleton className={cn('brightness-120')}>
     <CardHeader>
       <CardTitle className={cn('flex', 'justify-between', 'items-center')}>
         <Skeleton className={cn('w-48', 'h-6')} />
