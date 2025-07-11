@@ -4,7 +4,6 @@
   "description": "Monorepo holding the NASA Eplorer API and client",
   "scripts": {
     "test": "pnpm recursive run test",
-    "test:ci": "pnpm recursive run test --coverage --ci",
     "lint": "pnpm recursive run lint",
     "lint:styles": "pnpm recursive run lint:styles",
     "code:qa": "pnpm prettier && pnpm lint && pnpm lint:styles",
@@ -13,7 +12,8 @@
     "dev": "pnpm run --parallel -r dev",
     "build:api": "pnpm --filter api build",
     "build:ui": "pnpm --filter ui build",
-    "docker:api": "docker build . -f ./services/apps/api/Dockerfile"
+    "docker:api": "docker build . -f ./services/apps/api/Dockerfile",
+    "knip": "knip"
   },
   "keywords": [],
   "author": "Kris Pomphrey <kris@tkf.network>",
@@ -25,9 +25,11 @@
   "devDependencies": {
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
+    "@types/node": "^24.0.13",
     "husky": "^9.1.7",
-    "knip": "^5.41.1",
-    "lint-staged": "^15.2.11"
+    "knip": "^5.61.3",
+    "lint-staged": "^15.2.11",
+    "typescript": "^5.8.3"
   },
   "pnpm": {
     "overrides": {

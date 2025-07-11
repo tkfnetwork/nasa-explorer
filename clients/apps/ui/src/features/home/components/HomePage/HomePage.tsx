@@ -38,7 +38,7 @@ export const HomePage = () => {
           <p>{t('common:description')}</p>
           <div>
             <Button onClick={() => navigate({ to: AppRoutes.Asteroids })}>
-              Lets Go!
+              {t('common:letsGo')}
             </Button>
           </div>
         </div>

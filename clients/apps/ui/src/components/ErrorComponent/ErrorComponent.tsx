@@ -8,10 +8,12 @@ export const ErrorComponent = ({
   error,
   reset,
   resetLabel,
+  showMessage,
 }: ErrorComponentProps) => {
   const { t } = useTranslation(['common']);
 
-  const message = isDev ? error?.message?.toString() : t('common:oopsProblem');
+  const message =
+    isDev || showMessage ? error?.message?.toString() : t('common:oopsProblem');
 
   return (
     <div

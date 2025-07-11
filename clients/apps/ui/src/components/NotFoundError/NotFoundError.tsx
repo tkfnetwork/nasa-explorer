@@ -6,9 +6,10 @@ export const NotFoundError = () => {
 
   return (
     <ErrorComponent
-      error={new Error('Page not found')}
+      error={new Error(t('common:pageNotFound'))}
       reset={() => window.history.back()}
       resetLabel={t('common:goBack')}
+      showMessage
     />
   );
 };
