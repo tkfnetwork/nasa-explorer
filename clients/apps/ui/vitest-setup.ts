@@ -1,5 +1,6 @@
 import 'vitest-axe/extend-expect';
 import '@testing-library/jest-dom/vitest';
+import { faker } from '@faker-js/faker';
 
 /// <reference types="@vitest/browser/context" />
 
@@ -18,3 +19,5 @@ Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
 Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
   value: 800,
 });
+
+import.meta.env.VITE_API_BASE_URL = faker.internet.url();
