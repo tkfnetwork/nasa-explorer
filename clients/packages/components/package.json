@@ -6,6 +6,7 @@
   "main": "dist/index.js",
   "author": "Kris Pomphrey <kris@tkf.network>",
   "scripts": {
+    "prepare": "pnpm build",
     "dev": "pnpm build --watch",
     "build": "tsc -b && vite build",
     "build:css": "pnpm dlx @tailwindcss/cli -i ./index.css -o ./build/tw.css",
