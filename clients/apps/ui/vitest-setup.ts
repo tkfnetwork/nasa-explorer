@@ -20,4 +20,6 @@ Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
   value: 800,
 });
 
+// eslint-disable-next-line
+// @ts-ignore HTMLElement is not inferred during build
 import.meta.env.VITE_API_BASE_URL = faker.internet.url();
