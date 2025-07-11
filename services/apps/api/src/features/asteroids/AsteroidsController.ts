@@ -41,7 +41,7 @@ export class AsteroidsController implements AsteroidsControllerInterface {
    * /asteroids:
    *   get:
    *     operationId: getAsteroids
-   *     summary: Get asteroids by date
+   *     summary: Asteroids List
    *     description: |
    *       Return a feed of asteroids by start and end date.
    *
@@ -99,7 +99,10 @@ export class AsteroidsController implements AsteroidsControllerInterface {
    * /asteroids/positions:
    *   get:
    *     operationId: wsAsteroidsPositions
-   *     summary: Websocket endpoint for retrieving asteroids positions
+   *     summary: Asteroids details (WS)
+   *     description: Websocket endpoint for retrieving asteroids detailed information
+   *     tags:
+   *       - Asteroids
    *     responses:
    *       101:
    *         description: Switching Protocols - WebSocket connection established.
