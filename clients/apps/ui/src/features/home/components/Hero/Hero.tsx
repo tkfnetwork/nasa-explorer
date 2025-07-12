@@ -30,9 +30,7 @@ export const Hero = () => {
               'opacity-0',
               !isLoading && 'opacity-100',
               'transition',
-              'object-cover',
-              'h-full',
-              'w-auto'
+              'object-cover'
             )}
             width="auto"
             height="100%"
