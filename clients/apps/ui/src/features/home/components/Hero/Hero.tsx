@@ -35,8 +35,7 @@ export const Hero = () => {
             )}
             width="auto"
             height="100%"
-            // src={data?.data?.small}
-            src="https://apod.nasa.gov/apod/image/2507/NLCreflectionsHeden.jpg"
+            src={data?.data?.small}
             onLoad={() => toggleImageLoaded()}
           />
         ) : null}
