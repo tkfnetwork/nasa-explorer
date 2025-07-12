@@ -76,13 +76,13 @@ cp .env.example .env
 
 ### Development
 
-Once all required `.env` files are created, you can run the entire stack using:
+Once all required `.env` files are created, you can run the entire stack using from the root of the repo:
 
 ```sh
 pnpm dev
 ```
 
-This starts all apps and services marked for development via [`turbo`](https://turbo.build/) or custom scripts.
+This starts all apps and services.
 
 ---
 
