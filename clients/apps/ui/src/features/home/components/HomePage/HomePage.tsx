@@ -33,7 +33,7 @@ export const HomePage = () => {
           'flex-1'
         )}
       >
-        <div className={cn('basis-1/2', 'flex', 'flex-col', 'gap-4')}>
+        <div className={cn('basis-1/2', 'flex-1', 'flex', 'flex-col', 'gap-4')}>
           <h1>{t('common:welcomeExplorer')}</h1>
           <p>{t('common:description')}</p>
           <div>
@@ -47,9 +47,12 @@ export const HomePage = () => {
           className={cn(
             'basis-1/2',
             'flex',
+            'flex-1',
             'items-center',
             'justify-center',
-            'aspect-square'
+            'aspect-square',
+            'w-full',
+            'md:w-1/2!'
           )}
         >
           <Hero />

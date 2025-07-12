@@ -30,11 +30,13 @@ export const Hero = () => {
               'opacity-0',
               !isLoading && 'opacity-100',
               'transition',
-              'object-cover'
+              'object-cover',
+              'max-w-[unset]'
             )}
             width="auto"
             height="100%"
-            src={data?.data?.small}
+            // src={data?.data?.small}
+            src="https://apod.nasa.gov/apod/image/2507/NLCreflectionsHeden.jpg"
             onLoad={() => toggleImageLoaded()}
           />
         ) : null}
